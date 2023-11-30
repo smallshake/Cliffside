@@ -100,6 +100,12 @@ public:
 	UFUNCTION()
 	void UnitDestroyed(AActor* Actor, EEndPlayReason::Type EndPlayReason);
 
+	UFUNCTION(BlueprintCallable)
+	void BuildFlowFieldFromThisTile();
+
+	UFUNCTION(BlueprintCallable)
+	void ResetFlowField();
+
 	ATile();
 	virtual void BeginPlay() override;
 
@@ -128,7 +134,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	ATile* TileTowardsHomeTile = nullptr;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess))
 	int32 DistanceToHomeTile = INT32_MAX;
 
 };

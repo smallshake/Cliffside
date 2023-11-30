@@ -55,6 +55,8 @@ UUnitContainerComponent::UUnitContainerComponent()
 void UUnitContainerComponent::AddUnits(const FUnitSet& Units)
 {
 	ContainedUnits.Add(Units);
+	if(GetTotalNumberOfSelectedUnits() > 0)
+		SelectAllUnits();
 	OnContainedUnitsChanged.Broadcast(this);
 }
 
@@ -115,6 +117,12 @@ void UUnitContainerComponent::SelectUnits(const FUnitSet& UnitSet)
 {
 	DeselectAllUnits();
 	SelectedUnits = UnitSet;
+	OnSelectedUnitsChanged.Broadcast(this);
+}
+
+void UUnitContainerComponent::SelectAllUnits()
+{
+	SelectedUnits = ContainedUnits;
 	OnSelectedUnitsChanged.Broadcast(this);
 }
 

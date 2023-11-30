@@ -48,6 +48,9 @@ public:
 	void SelectUnits(const FUnitSet& UnitSet);
 
 	UFUNCTION(BlueprintCallable)
+	void SelectAllUnits();
+
+	UFUNCTION(BlueprintCallable)
 	void DeselectAllUnits();
 
 	UPROPERTY(BlueprintAssignable)

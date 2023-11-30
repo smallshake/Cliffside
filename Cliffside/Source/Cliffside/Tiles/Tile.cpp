@@ -24,12 +24,6 @@ ATile::ATile()
 void ATile::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if(bHomeTile)
-	{
-		DistanceToHomeTile = 0;
-		BuildFlowField();
-	}
 }
 
 void ATile::RegisterUnitActor(AUnit* UnitActor)
@@ -129,6 +123,13 @@ void ATile::FindNeighbours()
 	}
 }
 
+void ATile::BuildFlowFieldFromThisTile()
+{
+	DistanceToHomeTile = 0;
+	TileTowardsHomeTile = nullptr;
+	BuildFlowField();
+}
+
 void ATile::BuildFlowField()
 {
 	FindNeighbours();
@@ -142,6 +143,12 @@ void ATile::BuildFlowField()
 			NeighbourTile->BuildFlowField();
 		}
 	}
+}
+
+void ATile::ResetFlowField()
+{
+	DistanceToHomeTile = INT32_MAX;
+	TileTowardsHomeTile = nullptr;
 }
 
 AUnit* ATile::AddNewUnits(UUnitDescription* UnitType, int32 UnitCount, FVector SpawnLocation, bool bForceCreateNewActor /*= false*/)
