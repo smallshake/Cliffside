@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UnitSet.h"
 #include "GameFramework/Character.h"
 #include "Interaction/Damageable.h"
 #include "Interaction/Selectable.h"
@@ -53,6 +54,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, meta=(WorldContext=WorldContextObject))
 	static AUnit* SpawnUnitActor(UObject* WorldContextObject, UUnitDescription* UnitType, int32 UnitStrength, EUnitTeam UnitTeam, FTransform SpawnTransform);
+
+	UFUNCTION(BlueprintCallable)
+	static FUnitSet ConvertToOtherType(const FUnitSet& UnitSet, UUnitDescription* NewType);
 
 	AUnit();
 	virtual void BeginPlay() override;

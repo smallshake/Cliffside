@@ -70,6 +70,14 @@ AUnit* AUnit::SpawnUnitActor(UObject* WorldContextObject, UUnitDescription* Unit
 	return UnitActor;
 }
 
+FUnitSet AUnit::ConvertToOtherType(const FUnitSet& UnitSet, UUnitDescription* NewType)
+{
+	FUnitSet WorkerSet;
+	WorkerSet.Add(NewType, UnitSet.TotalCount());
+	return WorkerSet;
+
+}
+
 AUnit::AUnit()
 {
 	SelectionComponent = CreateDefaultSubobject<USelectionComponent>(TEXT("SelectionComponent"));
